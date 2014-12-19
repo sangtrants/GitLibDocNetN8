@@ -1,0 +1,42 @@
+﻿@{
+    ViewBag.Title = "QuanLyTacGia";
+    Layout = "~/Views/Shared/_Layout_admin.cshtml";
+}
+
+<br />
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <center>TÌM KIẾM TÁC GIẢ</center>
+        </div>
+    <br />
+@using (Ajax.BeginForm("KqTimKiemTacGia", "ThuThu",
+                        new AjaxOptions {
+                        InsertionMode=InsertionMode.Replace,
+                        HttpMethod="GET",
+                        OnFailure="searchFailed",
+                        LoadingElementId="ajax-loader",
+                        UpdateTargetId="kqtimkiemtacgia", 
+                        }))
+{
+    <p>
+        Từ khoá: <input type="text" name="TuKhoa" class="tukhoa"/>
+        Tìm kiếm theo: 
+        <select name="LoaiTimKiem">
+            <option value="TatCa">Tất cả</option>
+            <option value="TenTacGia">Tên tác giả</option>
+            <option value="TenVietTat">Tên viết tắt</option>
+        </select>
+    </p>
+    <p>
+        Giới hạn tìm kiếm:
+        <select name="GioiHan">
+            <option value="Chua">Có chứa từ khoá</option>
+            <option value="ChinhXac">Chính xác với từ khoá</option>
+        </select>
+    </p>
+    <p>
+        <input type="submit" id="timkiem" id="Tìm kiếm" value="Tìm kiếm"/>
+    </p>
+}
+    <div id="kqtimkiemtacgia"></div>
+</div>

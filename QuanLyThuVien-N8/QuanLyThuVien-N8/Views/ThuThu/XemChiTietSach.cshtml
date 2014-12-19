@@ -1,0 +1,66 @@
+﻿@model QuanLyThuVien_N8.Models.Sach
+@{
+    ViewBag.Title = "QuanLySach";
+    Layout = "~/Views/Shared/_Layout_admin.cshtml";
+}
+
+<br />
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <center>XEM CHI TIẾT SÁCH</center>
+    </div>
+<br />
+         	<div class="feat_prod_box">
+                @{string a = "~/BookImg/"+@Model.MaSach+".jpg";}
+            	<div class="prod_img"><a href="details.html"><img src=@Url.Content(@a) width="150" height="200" class="fancybox" title="Image Caption Text"/></a></div>
+                 
+                 @{string s1 = "~/BookImg/" + @Model.MaSach;
+                   string s2 = "~/BookImg/" + @Model.MaSach + "/{0}";}
+                 @foreach (var imgPath in Directory.GetFiles(Server.MapPath(@s1), "*.jpg"))
+                 {
+                    var img = new FileInfo(imgPath);
+                    <img src="@Url.Content(String.Format(@s2, img.Name))" class="fancybox" title="Image Caption Text" height="0" width="0"/>
+                 }
+
+                <div class="prod_det_box">
+                	<div class="box_top"></div>
+                    <div class="box_center">
+                    <div class="prod_title">@Model.TenSach</div>
+                    <p class="details"><strong>Tác giả</strong>: @Html.DisplayFor(model => model.TacGia1.TenTacGia)</p>
+                    <p class="details"><strong>Nhà xuất bản</strong>: @Html.DisplayFor(model => model.NhaXuatBan1.TenNhaXuatBan)</p>
+                    <p class="details"><strong>Phân loại</strong>: @Html.DisplayFor(model => model.DanhMuc.TenDanhMuc)</p>
+                    <p class="details"><strong>Mã sách</strong>: @Html.DisplayFor(model => model.MaSach)</p>
+                    <p class="details"><strong>Cuốn</strong>: @Html.DisplayFor(model => model.Cuon)</p>
+                    <p class="details"><strong>Tập</strong>: @Html.DisplayFor(model => model.Tap)</p>
+                    <p class="details"><strong>Nhan đề chính</strong>: @Html.DisplayFor(model => model.NhanDeChinh)</p>
+                    <p class="details"><strong>Nhan đề phụ</strong>: @Html.DisplayFor(model => model.NhanDePhu)</p>
+                    <p class="details"><strong>Thời gian xuất bản</strong>: @Html.DisplayFor(model => model.NamXuatBan)</p>
+                    <p class="details"><strong>Tình trạng mượn</strong>:
+                        @if (Model.TinhTrangMuon == 1)
+                        {
+                            <span> Đã có người mượn </span>
+                        }
+                        else
+                        {
+                            <span> Đang trống </span>
+                        }
+                    </p>
+                    <p class="details"><strong>Giá sách</strong>: @Html.DisplayFor(model => model.GiaSach)</p>
+                    <p class="details"><strong>Kính thước sách</strong>: @Html.DisplayFor(model => model.KichThuoc)</p>
+                    <p class="details"><strong>Ngôn ngữ</strong>: @Html.DisplayFor(model => model.NgonNgu)</p>
+                    <p class="details"><strong>Tóm tắt nội dung</strong>:</p>
+                    <p><i> @Html.DisplayFor(model => model.TomTat)</i></p>
+                    <p><input type="button" class="btn btn-outline btn-primary" value="Upload nội dung" onclick= "location.href='@Url.Action("UploadNoiDungSach", "ThuThu", new { id = Model.MaSach })    '" /></p>
+                    <p>(Upload hình ảnh chứ nội dung xem trước của quyển sách)</p>
+                    <input type="button" class="btn btn-outline btn-primary" value="Cập Nhật" onclick= "location.href='@Url.Action("CapNhatSach", "ThuThu", new { id = Model.MaSach })'" />
+                    <input type="button" class="btn btn-outline btn-primary" value="Xoá" onclick= "location.href='@Url.Action("XoaSach", "ThuThu", new { id = Model.MaSach })'" />
+                    <input type="button" class="btn btn-outline btn-primary" value="Quay Lại" onclick= "location.href='@Url.Action("XemToanBoSach", "ThuThu")'" />
+                    <div class="clear"></div>
+                    </div>
+                    <div class="box_bottom"></div>
+                </div>    
+            <div class="clear"></div>
+            </div>
+
+    <br /><br />
+</div>

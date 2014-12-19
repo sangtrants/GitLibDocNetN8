@@ -1,0 +1,46 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<QuanLyThuVien_N8.Models.Sach>
+    
+<h2>Kết quả tìm kiếm</h2>
+
+<div id="quanlysach">
+    <div class="panel-body">
+         @foreach (var item in Model)
+         {
+         	<div class="feat_prod_box">
+                @{string a = "~/BookImg/"+@item.MaSach+".jpg";}
+            	<div class="prod_img"><img src=@Url.Content(@a) width="150" height="200" /></div>
+                <div class="prod_det_box">
+                	<div class="box_top"></div>
+                    <div class="box_center">
+                    <div class="prod_title">@item.TenSach</div>
+                    <p class="details"><strong>Tác giả</strong>: @Html.DisplayFor(modelItem => item.TacGia1.TenTacGia)</p>
+                    <p class="details"><strong>Nhà xuất bản</strong>: @Html.DisplayFor(modelItem => item.NhaXuatBan1.TenNhaXuatBan)</p>
+                    <p class="details"><strong>Phân loại</strong>: @Html.DisplayFor(modelItem => item.DanhMuc.TenDanhMuc)</p>
+                    <p class="details"><strong>Tình trạng mượn</strong>:
+                        @if (item.TinhTrangMuon == 1)
+                        {
+                            <span> Đã có người mượn </span>
+                        }
+                        else
+                        {
+                            <span> Đang trống </span>
+                        }
+                    </p>
+                    <input type="button" class="btn btn-outline btn-primary" value="Xem Chi Tiết" onclick= "location.href='@Url.Action("XemChiTietSach", "ThuThu", new { id = item.MaSach })'" />
+                    <input type="button" class="btn btn-outline btn-primary" value="Cập Nhật" onclick= "location.href='@Url.Action("CapNhatSach", "ThuThu", new { id = item.MaSach })'" />
+                    <input type="button" class="btn btn-outline btn-primary" value="Xoá" id="Xoa" onclick= "location.href='@Url.Action("XoaSach", "ThuThu", new { id = item.MaSach })'" />
+                    <div class="clear"></div>
+                    </div>
+                    <div class="box_bottom"></div>
+                </div>    
+            <div class="clear"></div>
+            </div>
+         }
+        <div class ="Paging">
+            @Html.PagedListPager(Model, page => Url.Action("KqTimKiemSach", new { page, TuKhoa = ViewBag.TuKhoa, LoaiTimKiem = ViewBag.LoaiTimKiem, GioiHan = ViewBag.GioiHan, NhaXuatBan = ViewBag.NhaXuatBan}), 
+                     PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing( new AjaxOptions(){  HttpMethod = "GET", UpdateTargetId="kqtimkiemsach"}))
+        </div>
+    </div>
+</div>

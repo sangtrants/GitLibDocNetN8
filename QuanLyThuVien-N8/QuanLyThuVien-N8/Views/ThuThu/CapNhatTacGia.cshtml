@@ -1,0 +1,45 @@
+﻿@model QuanLyThuVien_N8.Models.TacGia
+@{
+    ViewBag.Title = "QuanLyTacGia";
+    Layout = "~/Views/Shared/_Layout_admin.cshtml";
+}
+
+<br />
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <center>CẬP NHẬT TÁC GIẢ</center>
+    </div>
+<br />
+    @using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <table class="table table-striped table-bordered table-hover">
+        @Html.HiddenFor(model => model.MaTacGia)
+
+        <tr>
+            <td><strong>Tên sách:</strong></td>
+            <td>@Html.EditorFor(model => model.TenTacGia)</td>
+        </tr>   
+         
+        <tr>
+            <td><strong>Quốc tịch:</strong></td>
+            <td>@Html.EditorFor(model => model.QuocTich)</td>
+        </tr>
+    
+        <tr>
+            <td><strong>Năm sinh:</strong></td>
+            <td>@Html.EditorFor(model => model.NamSinh)</td>
+        </tr>
+    
+        <tr>
+            <td><strong>Tên viết tắt:</strong></td>
+            <td>@Html.EditorFor(model => model.TenVietTat)</td>
+        </tr>
+    </table>
+    <p>
+        <input type="submit" class="btn btn-outline btn-primary" value="Lưu lại" />
+        <input type="button" class="btn btn-outline btn-primary" value="Quay Lại" onclick= "location.href='@Url.Action("XemToanBoTacGia", "ThuThu")    '" />
+    </p>
+}
+    
+</div>

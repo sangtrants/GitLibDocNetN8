@@ -1,0 +1,43 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_admin.cshtml";
+}
+
+<script src="@Url.Content("~/Scripts/jquery-1.7.1.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")" type="text/javascript"></script>
+<br />
+
+
+
+<div class="col-lg-12">
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <center>QUẢN LÝ BARCODE</center>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-lg-6">
+                    @Ajax.ActionLink("Tạo mới BarCode", "GetStatus", new { id = 0 },new AjaxOptions()
+                                                {
+                                                    HttpMethod = "GET",
+                                                    UpdateTargetId = "status",
+                                                    InsertionMode = InsertionMode.Replace
+                                                },new { @class = "btn btn-primary btn-lg btn-block" })
+                    <br /><br />
+                    <span id="status"></span>
+                </div>
+                <div class="col-lg-6">
+                    @Ajax.ActionLink("Đọc BarCode", "GetBarCodeView", new { id = 0 },new AjaxOptions()
+                                                {
+                                                    HttpMethod = "GET",
+                                                    UpdateTargetId = "action",
+                                                    InsertionMode = InsertionMode.Replace
+                                                }, new { @class = "btn btn-primary btn-lg btn-block" })     
+                    <br /><br />  
+                     <span id="action"></span>            
+                     <span id="getBarcode"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

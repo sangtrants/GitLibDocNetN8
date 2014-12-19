@@ -1,0 +1,60 @@
+﻿@{
+    ViewBag.Title = "CapNhatAnh";
+    Layout = "~/Views/Shared/_Layout_home.cshtml";
+}
+
+
+@model QuanLyThuVien_N8.Models.NguoiDung
+<h2>CapNhatAnh</h2>
+@using (Html.BeginForm("cnAnh", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Độc Giả</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.HoTen)
+            @Html.ValidationMessageFor(model => model.HoTen)
+        </div>
+
+        
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MSSV)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.MSSV)
+            @Html.ValidationMessageFor(model => model.MSSV)
+        </div>
+
+        
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TenDangNhap)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.TenDangNhap)
+            @Html.ValidationMessageFor(model => model.TenDangNhap)
+        </div>
+
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AnhDaiDien)
+        </div>
+        <img style="width:118px; height:118px" src="@Url.Content(@Model.AnhDaiDien)" />
+        <br />
+        <br />
+        <div class="editor-field">
+            <input type="file" name="file" id="file" />
+        </div>
+        <br />
+        <p>
+            <input type="submit" value="Lưu" />
+        </p>
+    </fieldset>
+}

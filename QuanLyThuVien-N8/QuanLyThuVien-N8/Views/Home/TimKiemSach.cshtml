@@ -1,0 +1,53 @@
+﻿@model IEnumerable<QuanLyThuVien_N8.Models.NhaXuatBan>
+
+@{
+    ViewBag.Title = "QuanLySach";
+    Layout = "~/Views/Shared/_Layout_home.cshtml";
+}
+<script src="@Url.Content("~/Scripts/jquery-1.7.1.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")" type="text/javascript"></script>
+<br />
+
+    @using (Ajax.BeginForm("KqTimKiemSach", "Home",
+                            new AjaxOptions
+                            {
+                                InsertionMode = InsertionMode.Replace,
+                                HttpMethod = "GET",
+                                OnFailure = "searchFailed",
+                                LoadingElementId = "ajax-loader",
+                                UpdateTargetId = "kqtimkiemsach",
+                            }))
+    {
+        <p>
+            Từ khoá: <input type="text" name="TuKhoa" class="tukhoa"/>
+            Tìm kiếm theo: 
+            <select name="LoaiTimKiem">
+                <option value="TatCa">Tất cả</option>
+                <option value="TacGia">Tác giả</option>
+                <option value="TieuDe">Tiêu đề</option>
+            </select>
+        </p>
+        <p>
+            Giới hạn tìm kiếm:
+            <select name="GioiHan">
+                <option value="Chua">Có chứa từ khoá</option>
+                <option value="ChinhXac">Chính xác với từ khoá</option>
+            </select>
+        </p>
+        <p>
+            Nhà xuất bản:
+            <select name="NhaXuatBan">
+                <option value=0>Tất cả</option>
+            @foreach (var item in Model)
+            {
+                <option value=@item.MaNhaXuatBan>@item.TenNhaXuatBan</option>
+            }
+            </select>
+        </p>
+        <p>
+            <input type="submit" class="timkiem" value="Tìm kiếm"/>
+        </p>
+        <div id="kqtimkiemsach"></div>
+    }
+
+ 

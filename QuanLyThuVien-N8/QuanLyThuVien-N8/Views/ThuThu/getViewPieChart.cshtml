@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewBag.Title = "getViewPieChart";
+    Layout = "~/Views/Shared/_Layout_admin.cshtml";
+}
+
+<h2>Tỉ lệ người dùng sử dụng thư viện</h2>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">
+    
+    google.load("visualization", "1", { packages: ["corechart"] });
+    google.setOnLoadCallback(drawChart);
+    
+    function drawChart() {
+        $.get('/ThuThu/getdata',{},
+            function(data){
+                var tdata = new google.visualization.DataTable();
+
+                tdata.addColumn('string', 'LoaiNguoiDung');
+                tdata.addColumn('number', 'SoLuong');
+        
+                for (i = 0; i <data.length; i++) {
+                    tdata.addRow([data[i].LoaiNguoiDung, data[i].SoLuong]);
+                }
+        
+                var options = {
+                    title: 'Biểu đồ so sánh tỉ lệ sử dụng thư viện của Thư viện ĐHKHTN',
+                    position: "top",
+                    fontsize: "14px",
+                    chartArea: { width: '70%' },
+                };
+
+                var chart = new google.visualization.PieChart(document.getElementById('chartdiv'));
+                chart.draw(tdata, options);
+        })   
+    }
+</script>
+<div id="chartdiv" style="width: 600px; height: 600px;">
+</div>

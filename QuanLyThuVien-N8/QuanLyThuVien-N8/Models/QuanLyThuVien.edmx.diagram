@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7195ace2fa0e4094bb88b9fccf45a1a4" Name="Diagram1" ZoomLevel="107">
+        <EntityTypeShape EntityType="QuanLyThuVienModel.ChiTietDonHang" Width="1.5" PointX="3" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyThuVienModel.ChiTietPhieuMuon" Width="1.5" PointX="8.25" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyThuVienModel.DanhMuc" Width="1.5" PointX="3.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyThuVienModel.DonHang" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyThuVienModel.NguoiDung" Width="1.5" PointX="3.75" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyThuVienModel.NhanVien" Width="1.5" PointX="1.5" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyThuVienModel.NhaXuatBan" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyThuVienModel.Phat" Width="1.5" PointX="10.5" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyThuVienModel.QuyDinhPhat" Width="1.5" PointX="8.25" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyThuVienModel.TacGia" Width="1.5" PointX="3.75" PointY="10.875" IsExpanded="true" />
+        <AssociationConnector Association="QuanLyThuVienModel.fk_ChiTietDonHang_DonHang" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyThuVienModel.fk_ChiTietDonHang_NXB" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyThuVienModel.fk_Phat_CTPhieuMuon" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyThuVienModel.fk_DonHang_NhanVien" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyThuVienModel.fk_Phat_QDPhat" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="QuanLyThuVienModel.PhieuMuon" Width="1.5" PointX="7.1611606009123658" PointY="27.683417213933271" />
+        <EntityTypeShape EntityType="QuanLyThuVienModel.Sach" Width="1.5" PointX="0.83304061034370236" PointY="30.465169756889889" />
+        <AssociationConnector Association="QuanLyThuVienModel.fk_CtPhieuMuon_PhieuMuon" />
+        <AssociationConnector Association="QuanLyThuVienModel.fk_CtPhieuMuon_Sach" />
+        <AssociationConnector Association="QuanLyThuVienModel.fk_Sach_DanhMuc" />
+        <AssociationConnector Association="QuanLyThuVienModel.fk_PhieuMuon_NguoiDung" />
+        <AssociationConnector Association="QuanLyThuVienModel.fk_PhieuMuon_NhanVien" />
+        <AssociationConnector Association="QuanLyThuVienModel.fk_Sach_NhaXuatBan" />
+        <AssociationConnector Association="QuanLyThuVienModel.fk_Sach_TacGia" />
+        <EntityTypeShape EntityType="QuanLyThuVienModel.GopY" Width="1.5" PointX="8.022809987898361" PointY="18.477592238447439" />
+        <AssociationConnector Association="QuanLyThuVienModel.fk_Gopy_NguoiDung" />
+        <EntityTypeShape EntityType="QuanLyThuVienModel.ChiTietTapChi" Width="1.5" PointX="8.4470821229960222" PointY="20.150689954008296" />
+        <EntityTypeShape EntityType="QuanLyThuVienModel.TapChi" Width="1.5" PointX="6.271189266010742" PointY="11.578374570039275" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,14 @@
+﻿<p>
+     @Ajax.ActionLink("Đọc từ Camera", "GetBarCodeView_Camera", new { id = 0 },new AjaxOptions()
+                                                {
+                                                    HttpMethod = "GET",
+                                                    UpdateTargetId = "getBarcode",
+                                                    InsertionMode = InsertionMode.Replace
+                                                }, new { @class = "btn btn-outline btn-primary" })    
+     @Ajax.ActionLink("Đọc từ File", "GetBarCodeView_File", new { id = 0 },new AjaxOptions()
+                                                {
+                                                    HttpMethod = "GET",
+                                                    UpdateTargetId = "getBarcode",
+                                                    InsertionMode = InsertionMode.Replace
+                                                }, new { @class = "btn btn-outline btn-primary" })    
+</p>

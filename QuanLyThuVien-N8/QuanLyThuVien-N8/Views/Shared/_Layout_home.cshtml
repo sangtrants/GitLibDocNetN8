@@ -1,0 +1,213 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Thư viện KHTN</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS
+================================================== -->
+    <link href="@Url.Content("~/Content/home/css/bootstrap.css")" rel="stylesheet">
+    <link href="@Url.Content("~/Content/home/css/bootstrap-responsive.css")" rel="stylesheet">
+    <link href="@Url.Content("~/Content/home/css/prettyPhoto.css")" rel="stylesheet">
+    <link href="@Url.Content("~/Content/home/css/flexslider.css")" rel="stylesheet">
+    <link href="@Url.Content("~/Content/home/css/custom-styles.css")" rel="stylesheet">
+
+
+
+    <!-- Favicons
+================================================== -->
+    <link rel="shortcut icon" href="~/Content/home/img/favicon.ico">
+    <link rel="apple-touch-icon" href="~/Content/home/img/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="~/Content/home/img/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="~/Content/home/img/apple-touch-icon-114x114.png">
+
+    <!-- JS
+================================================== -->
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="@Url.Content("~/Content/home/js/bootstrap.js")"></script>
+    <script src="@Url.Content("~/Content/home/js/jquery.prettyPhoto.js")"></script>
+    <script src="@Url.Content("~/Content/home/js/jquery.flexslider.js")"></script>
+    <script src="@Url.Content("~/Content/home/js/jquery.custom.js")"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $("#btn-blog-next").click(function () {
+                $('#blogCarousel').carousel('next')
+            });
+            $("#btn-blog-prev").click(function () {
+                $('#blogCarousel').carousel('prev')
+            });
+
+            $("#btn-client-next").click(function () {
+                $('#clientCarousel').carousel('next')
+            });
+            $("#btn-client-prev").click(function () {
+                $('#clientCarousel').carousel('prev')
+            });
+
+        });
+
+        $(window).load(function () {
+
+            $('.flexslider').flexslider({
+                animation: "slide",
+                slideshow: true,
+                start: function (slider) {
+                    $('body').removeClass('loading');
+                }
+            });
+        });
+
+</script>
+
+</head>
+
+<body class="home">
+    <!-- Color Bars (above header)-->
+    <div class="color-bar-1"></div>
+    <div class="color-bar-2 color-bg"></div>
+
+
+    <div class="container">
+
+        <div class="row header">
+            <!-- Begin Header -->
+
+            <!-- Logo
+        ================================================== -->
+            <div class="span5 logo">
+                <a href="">
+                    <img src="~/Content/home/img/logo-khtn.png" alt="" width="80" height="80" /></a>
+                <h3>THƯ VIỆN TRƯỜNG ĐH KHTN TPHCM</h3>
+            </div>
+
+            <!-- Main Navigation
+        ================================================== -->
+            <div class="span7 navigation">
+                <div class="navbar hidden-phone">
+
+                    <ul class="nav">
+                        <li class="active"><a href="">Trang chủ</a></li>
+                        <li>
+                            <a href="/Home/TimKiemSach">Tìm Sách</a>
+                        </li>
+                           @if(Session["type"] == "DocGia")
+                        {
+                            <li><a href="/DocGia/QLMuonTra">Quản lý mượn trả</a></li>
+                          
+                        }
+                         <li><a href="/Home/GopY">Góp ý - Hỗ trợ</a></li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="blog-style1.htm">Blog <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="blog-style1.htm">Blog Style 1</a></li>
+                                <li><a href="blog-style2.htm">Blog Style 2</a></li>
+                                <li><a href="blog-style3.htm">Blog Style 3</a></li>
+                                <li><a href="blog-style4.htm">Blog Style 4</a></li>
+                                <li><a href="blog-single.htm">Blog Single</a></li>
+                            </ul>
+                        </li>
+                         @if (Session["type"] != "DocGia")
+                         {
+                            <li><a href="/Home/Login">Login</a></li>
+                         }
+                         else
+                         {
+                              <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="blog-style1.htm">
+                                 <b>@Session["user"].ToString()</b>
+                                 <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li> @Html.ActionLink("Sửa thông tin cá nhân", "suadg", "Home", new { username = Session["user"] }, new { @class = "fa fa-user fa-fw" })</li>
+                                <li> @Html.ActionLink("Logout", "Logout", "Home", null, new { @class = "fa fa-sign-out fa-fw" })</li>
+                            </ul>
+                        </li>
+                         }
+                        
+                    </ul>
+
+                </div>
+
+                <!-- Mobile Nav
+            ================================================== -->
+                <form action="#" id="mobile-nav" class="visible-phone">
+                    <div class="mobile-nav-select">
+                        <select onchange="window.open(this.options[this.selectedIndex].value,'_top')">
+                            <option value="">Navigate...</option>
+                            <option value="index.htm">Home</option>
+                            <option value="index.htm">- Full Page</option>
+                            <option value="index-gallery.htm">- Gallery Only</option>
+                            <option value="index-slider.htm">- Slider Only</option>
+                            <option value="features.htm">Features</option>
+                            <option value="page-full-width.htm">Pages</option>
+                            <option value="page-full-width.htm">- Full Width</option>
+                            <option value="page-right-sidebar.htm">- Right Sidebar</option>
+                            <option value="page-left-sidebar.htm">- Left Sidebar</option>
+                            <option value="page-double-sidebar.htm">- Double Sidebar</option>
+                            <option value="gallery-4col.htm">Gallery</option>
+                            <option value="gallery-3col.htm">- 3 Column</option>
+                            <option value="gallery-4col.htm">- 4 Column</option>
+                            <option value="gallery-6col.htm">- 6 Column</option>
+                            <option value="gallery-4col-circle.htm">- Gallery 4 Col Round</option>
+                            <option value="gallery-single.htm">- Gallery Single</option>
+                            <option value="blog-style1.htm">Blog</option>
+                            <option value="blog-style1.htm">- Blog Style 1</option>
+                            <option value="blog-style2.htm">- Blog Style 2</option>
+                            <option value="blog-style3.htm">- Blog Style 3</option>
+                            <option value="blog-style4.htm">- Blog Style 4</option>
+                            <option value="blog-single.htm">- Blog Single</option>
+                            <option value="page-contact.htm">Contact</option>
+                        </select>
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+        <!-- End Header -->
+
+
+        <!-- Page Content
+    ================================================== -->
+
+        <!-- Title Header -->
+        <div class="row">
+            <div class="span12">
+                @RenderBody()
+            </div>
+        </div>
+
+        <!-- Footer Area
+        ================================================== -->
+
+        <div class="footer-container">
+            <!-- Begin Footer -->
+            <div class="container">
+
+
+                <div class="row">
+                    <!-- Begin Sub Footer -->
+                    <div class="span12 footer-col footer-sub">
+                        <div class="row no-margin">
+                            <div class="span6"><span class="left">
+                                <h6>Nhóm 8 - Phát triển ứng dụng HTTT Hiện đại</h6>
+                            </span></div>
+                            <div class="span6">
+                                <span class="right">
+                                    <a href="#">Home</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#">Features</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#">Gallery</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#">Blog</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#">Contact</a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Sub Footer -->
+
+            </div>
+        </div>
+        <!-- End Footer -->
+
+        <!-- Scroll to Top -->
+        <div id="toTop" class="hidden-phone hidden-tablet">Back to Top</div>
+</body>
+</html>

@@ -1,0 +1,34 @@
+﻿@if (ViewBag.flag == 0)
+{
+    <h3><i>Mã đọc giả hiện không tồn tại</i></h3>
+    <input type="button" class="btn btn-outline btn-primary" value="Quan lại" onclick= "location.href='@Url.Action("QLMuonSach", "ThuThu")'" />
+}
+else if (ViewBag.flag == 1)
+{
+    <h3><i>Đọc giả hiện không thể mượn thêm sách</i></h3>
+    <input type="button" class="btn btn-outline btn-primary" value="Quan lại" onclick= "location.href='@Url.Action("QLMuonSach", "ThuThu")'" />
+}
+else
+{
+    <div id="sachmuon1">
+    <h3>Đọc giả <strong>@ViewBag.MaDocGia</strong> hiện có thể mượn thêm <strong>@ViewBag.SoSach</strong> quyển sách</h3>
+    @using (Ajax.BeginForm("ThemSachMuon1", "ThuThu",
+                            new AjaxOptions
+                            {
+                                InsertionMode = InsertionMode.Replace,
+                                HttpMethod = "GET",
+                                OnFailure = "searchFailed",
+                                LoadingElementId = "ajax-loader",
+                                UpdateTargetId = "sachmuon1",
+                            }))
+    {
+        <input type="hidden" name="MaDocGia" value="@ViewBag.MaDocGia" />
+        <input type="hidden" name="SoSach" value="@ViewBag.SoSach" />
+        <p>
+            <strong>Mã sách mượn:</strong> <input type="text" name="MaSach" class="tukhoa"/>
+            <input type="submit" class="btn btn-outline btn-primary" value="Thêm sách" id="timkiem"/>
+        </p>
+    }
+    <i>(Nhập mã sách cần mượn)</i>
+    </div>
+}

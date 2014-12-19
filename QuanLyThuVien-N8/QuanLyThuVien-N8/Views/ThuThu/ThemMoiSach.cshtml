@@ -1,0 +1,111 @@
+﻿@model QuanLyThuVien_N8.Models.Sach
+@{
+    ViewBag.Title = "QuanLySach";
+    Layout = "~/Views/Shared/_Layout_admin.cshtml";
+}
+
+<br />
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <center>THÊM SÁCH MỚI</center>
+    </div>
+<br />
+
+    @using (Html.BeginForm("ThemMoiSach", "ThuThu", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {   
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <table class="table table-striped table-bordered table-hover">
+
+            <tr>
+                <td><strong>Tên sách:</strong></td>
+                <td>
+                    @Html.EditorFor(model => model.TenSach)
+                </td>
+            </tr>   
+         
+            <tr>
+                <td><strong>Nhan đề chính:</strong></td>
+                <td>@Html.EditorFor(model => model.NhanDeChinh)</td>
+            </tr>
+    
+            <tr>
+                <td><strong>Nhan đề phụ:</strong></td>
+                <td>@Html.EditorFor(model => model.NhanDePhu)</td>
+            </tr>
+    
+            <tr>
+                <td><strong>Thời gian xuất bản:</strong></td>
+                <td>@Html.EditorFor(model => model.NamXuatBan)</td>
+            </tr>
+    
+            <tr>
+                <td><strong>Tình trạng sách:</strong></td>
+                <td>@Html.EditorFor(model => model.TinhTrangSach)</td>
+            </tr>
+    
+            <tr>
+                <td><strong>Tình trạng mượn:</strong></td>
+                <td>@Html.EditorFor(model => model.TinhTrangMuon)</td>
+            </tr>
+        
+            <tr>
+                <td><strong>Giá sách:</strong></td>
+                <td>@Html.EditorFor(model => model.GiaSach)</td>
+            </tr>
+    
+            <tr>
+                <td><strong>Kích thước sách:</strong></td>
+                <td>@Html.EditorFor(model => model.KichThuoc)</td>
+            </tr>
+    
+            <tr>
+                <td><strong>Ngôn ngữ:</strong></td>
+                <td>@Html.EditorFor(model => model.NgonNgu)</td>
+            </tr>
+    
+            <tr>
+                <td><strong>Cuốn thứ:</strong></td>
+                <td>@Html.EditorFor(model => model.Cuon)</td>
+            </tr>
+       
+            <tr>
+                <td><strong>Tập thứ:</strong></td>
+                <td>@Html.EditorFor(model => model.Tap)</td>
+            </tr>
+    
+            <tr>
+               <td><strong>Tác giả:</strong></td>
+               <td>@Html.DropDownList("TacGia", String.Empty)</td>
+               <td><a href="/ThuThu/ThemMoiTacGia" target="_blank">Thêm tác giả mới</a></td>
+            </tr>
+    
+            <tr>
+               <td><strong>Nhà xuất bản:</strong></td>
+               <td>@Html.DropDownList("NhaXuatBan", String.Empty)</td>
+            </tr>
+    
+            <tr>
+               <td><strong>Danh mục:</strong></td>
+               <td>@Html.DropDownList("MaDanhMuc", String.Empty)</td>
+            </tr>
+        </table>
+    
+        <strong>Tóm tắt nội dung:</strong>
+        @Html.TextAreaFor(model => model.TomTat, new { rows = "3", cols = "3", style = "width: 90%; height: 50px;" })
+
+        <div class="editor-label">
+            Ảnh bìa sách:
+        </div>
+        
+        <div class="editor-field">
+            <input type="file" name="file" id="file" />
+        </div>
+        
+        <p>
+            <input type="submit" class="btn btn-outline btn-primary" value="Lưu lại" />
+            <input type="button" class="btn btn-outline btn-primary" value="Quay Lại" onclick= "location.href='@Url.Action("XemToanBoSach", "ThuThu")'"/>
+        </p>
+    }
+</div>

@@ -1,0 +1,21 @@
+﻿@model QuanLyThuVien_N8.Models.Sach
+@{
+    ViewBag.Title = "QuanLySach";
+    Layout = "~/Views/Shared/_Layout_admin.cshtml";
+}
+
+<br />
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <center>UPLOAD NỘI DUNG</center>
+    </div>
+<br />
+    <h1>@ViewBag.id</h1>
+    @using (Html.BeginForm("UploadNoiDungSach", "ThuThu", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <label for="file">Upload nội dung sách (dạng hình ảnh):</label>
+        <input type="file" name="files" value="" multiple="multiple"/>
+        <input type="hidden" name="id" value="@ViewBag.id" />
+        <input type="submit" class="btn btn-outline btn-primary" value="Upload" />
+    }
+</div>

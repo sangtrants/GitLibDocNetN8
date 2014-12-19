@@ -1,0 +1,95 @@
+﻿@model PagedList.IPagedList<QuanLyThuVien_N8.Models.Sach>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@{
+    ViewBag.Title = "QuanLySach";
+    Layout = "~/Views/Shared/_Layout_admin.cshtml";
+}
+
+<br />
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <center>QUẢN LÝ SÁCH</center>
+    </div>
+    <br />
+    <p>
+        &nbsp&nbsp<input type="button" class="btn btn-outline btn-primary" value="Create new" onclick= "location.href='@Url.Action("Create", "ThuThu")    '" />
+    </p>
+
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                <thead>
+                    <tr>
+                        <th>Mã sách</th>
+                        <th>Tên sách</th>
+                        <th>Năm xuất bản</th>
+                        <th>Tình trạng mượn</th>
+                        <th>Giá sách</th>
+                        <th>Ngôn ngữ</th>
+                        <th>Tác giả</th>
+                        <th>Nhà xuất bản</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MaSach)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TenSach)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NamXuatBan)
+                            </td>
+                            <td>@if (item.TinhTrangMuon == 1)
+                                {
+                                <p>Đang mượn</p>
+                                }
+                                else
+                                {
+                                <p>Chưa mượn</p>
+                                }
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.GiaSach)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NgonNgu)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TacGia)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NhaXuatBan)
+                            </td>
+                            <td>
+                                <p>
+                                    <input type="button" class="btn btn-outline btn-primary" value="Edit" onclick= "location.href='@Url.Action("Create", "ThuThu", new { id = item.MaSach })    '" />
+                                    <input type="button" class="btn btn-outline btn-primary" value="Details" onclick= "location.href='@Url.Action("Create", "ThuThu", new { id = item.MaSach })    '" />
+                                    <input type="button" class="btn btn-outline btn-primary" value="Delete" onclick= "location.href='@Url.Action("Create", "ThuThu", new { id = item.MaSach })    '" />
+
+                                </p>
+
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <!-- /.table-responsive -->
+       <div class ="Paging">
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+        @Html.PagedListPager(Model, page => Url.Action("QuanLySach", new { page }))
+    </div>
+    </div>
+    <!-- /.panel-body -->
+</div>
+
+
+
+
+
+

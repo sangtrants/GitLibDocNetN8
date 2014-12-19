@@ -1,0 +1,111 @@
+﻿@model PagedList.IPagedList<QuanLyThuVien_N8.Models.ChiTietPhieuMuon>
+@using PagedList.Mvc;
+@using PagedList;
+
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Quản Lý Mượn - Trả";
+    Layout = "~/Views/Shared/_Layout_home.cshtml";
+}
+
+<h3 class="page-header">QUẢN LÝ MƯỢN - TRẢ</h3>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <center style="font-size:large">LỊCH SỬ MƯỢN - TRẢ</center>
+    </div>
+    <br />
+    <span>
+        &nbsp&nbsp<input type="button" class="btn btn-outline btn-primary" value="Gia Hạn Sách" onclick="location.href='@Url.Action("themDGia", "ThuThu")    '" />
+    </span>
+    <span>
+        &nbsp&nbsp<input type="button" class="btn btn-outline btn-primary" value="Đặt Mượn Sách" onclick="location.href='@Url.Action("qlHinhAnh", "ThuThu")    '" />
+    </span>
+    <br />
+    <br />
+    <form action="/thuthu/KQTKiem" method="post" id="TimKiem">
+        
+            <table class="table table-striped table-bordered table-hover">
+                <tr>
+
+                    <th>
+                        <label> Từ khóa: </label><input type="text" name="TuKhoa" id="TuKhoa" />
+                    </th>
+                    <th>
+                        <label> Kiểu tìm:</label>
+                        <select name="KieuTim">
+                            <option></option>
+                            <option value="TatCa">Tất Cả</option>
+                            <option value="TenDG">Ngày Mượn</option>
+                            <option value="TenDG">Ngày Trả</option>
+                            <option value="MaDG">Tình Trạng Mượn</option>
+                        </select>
+                    </th>
+                    <th style="width:70px; height:50px">
+                        <input class="btn btn-outline btn-primary" type="submit" id="btnSearch" value="Tìm kiếm" />
+                    </th>
+                </tr>
+            </table>
+        
+    </form>
+    <div id="result">
+
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered table-hover">
+            <tr>
+                <th>
+                    Họ Tên
+                </th>
+                <th>
+                    Ngày Mượn
+                </th>
+                <th>
+                    Ngày Trả
+                </th>
+                <th>
+                    Tên Sách
+                </th>
+                <th>
+                    Tình Trạng Mượn
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    
+                    <td>
+                        @item.PhieuMuon.NguoiDung.HoTen
+                    </td>
+                    <td>
+                        @item.NgayMuon
+                    </td>
+                    <td>
+                        @item.NgayTra
+                    </td>
+                    <td>
+                        @item.Sach.TenSach
+                    </td>
+                    <td>
+                        @item.PhieuMuon.TinhTrangMuon
+                    </td>
+                    <td>
+                        @Html.ActionLink("Chỉnh Sửa", "suadg", new { id = item.MaChiTietPhieuMuon }, new { @class = "btn btn-outline btn-primary" })
+                        @Html.ActionLink("Chi Tiết", "chitietDGia", new { id = item.MaChiTietPhieuMuon }, new { @class = "btn btn-outline btn-primary" })
+                        @if (item.NgayTra == null)
+                        {
+                            @Html.ActionLink("Gia hạn", "GiaHanSach", new { id = item.MaChiTietPhieuMuon }, new { @class = "btn btn-outline btn-primary" })
+                            //@Ajax.ActionLink("Gia hạn", "GiaHanSach", new {id = item.MaChiTietPhieuMuon}, new AjaxOptions{HttpMethod = "POST",LoadingElementId = "lichsumuontra"},  new { @class = "btn btn-outline btn-primary" })
+                        }
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+    <div class="Paging">
+        Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+        @Html.PagedListPager(Model, page => Url.Action("QLMuonTra", new { page }))
+    </div>
+</div>

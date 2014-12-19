@@ -1,0 +1,56 @@
+﻿@model QuanLyThuVien_N8.Models.NhaXuatBan
+@{
+    ViewBag.Title = "QuanLyNXB";
+    Layout = "~/Views/Shared/_Layout_admin.cshtml";
+}
+
+<br />
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <center>CẬP NHẬT NHÀ XUẤT BẢN</center>
+    </div>
+<br />
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <table class="table table-striped table-bordered table-hover">
+        @Html.HiddenFor(model => model.MaNhaXuatBan)
+
+        <tr>
+            <td><strong>Tên nhà xuất bản:</strong></td>
+            <td>@Html.EditorFor(model => model.TenNhaXuatBan)</td>
+        </tr>   
+
+        <tr>
+            <td><strong>Địa chỉ:</strong></td>
+            <td>@Html.EditorFor(model => model.DiaChi)</td>
+        </tr>
+
+        <tr>
+            <td><strong>Email:</strong></td>
+            <td>@Html.EditorFor(model => model.Email)</td>
+        </tr>
+         
+        <tr>
+            <td><strong>Số điện thoại:</strong></td>
+            <td>@Html.EditorFor(model => model.SoDienThoai)</td>
+        </tr>
+    
+        <tr>
+            <td><strong>Số tài khoản:</strong></td>
+            <td>@Html.EditorFor(model => model.SoTaiKhoan)</td>
+        </tr>
+    
+        <tr>
+            <td><strong>Website:</strong></td>
+            <td>@Html.EditorFor(model => model.Website)</td>
+        </tr>
+    </table>
+    <p>
+        <input type="submit" class="btn btn-outline btn-primary" value="Lưu lại" />
+        <input type="button" class="btn btn-outline btn-primary" value="Quay Lại" onclick= "location.href='@Url.Action("XemToanBoNXB", "ThuThu")'" />
+    </p>
+}
+    
+</div>

@@ -1,0 +1,58 @@
+﻿@model QuanLyThuVien_N8.Models.NguoiDung
+
+@{
+    ViewBag.Title = "Thêm Người Dùng";
+    Layout = "~/Views/Shared/_Layout_admin.cshtml";
+}
+
+<h3 class="page-header">QUẢN LÝ ĐỘC GIẢ</h3>
+
+<div class="panel panel-primary col-lg-6">
+    <div class="panel-heading">
+        <center>THÊM ĐỘC GIẢ</center>
+    </div>
+    <br />
+
+    <div class="form-group">
+        <form action="/thuthu/themdg" method="post">
+            <label class="control-label">Họ Tên:</label>
+            <input type="text" class="form-control" name="hoten" />
+
+            <label class="control-label">CMND:</label>
+            <input type="text" class="form-control" name="cmnd" />
+
+            <label class="control-label">Ngày Sinh (mm/dd/yyyy):</label>
+            <input type="text" class="form-control" name="ngsinh" />
+
+            <label class="control-label">MSSV / MSCB:</label>
+            <input type="text" class="form-control" name="mssv" />
+
+            <label class="control-label">Email:</label>
+            <input type="text" class="form-control" name="email" />
+
+            <label class="control-label">Ngày Hết Hạn (mm/dd/yyyy): </label>
+            <input type="text" class="form-control" name="ngayhh" />
+
+            <div class="form-group">
+                <label class="control-label">Loại Người Dùng:</label>
+                <select name="loaingdung" class="form-control">
+                    <option value="Sinh Viên Trường">Sinh Viên Trường</option>
+                    <option value="Cán Bộ Trường">Cán Bộ Trường</option>
+                    <option value="Sinh Viên Trường Khác">Sinh Viên Trường Khác</option>
+                    <option value="Cán Bộ Trường Khác">Cán Bộ Trường Khác</option>
+                </select>
+            </div>
+
+            <label class="control-label">Tên Đăng Nhập:</label>
+            <input type="text" class="form-control" name="tendn" />
+
+            <label class="control-label">Mật Khẩu:</label>
+            <input type="text" class="form-control" name="mkhau" />
+            <br />
+            <p><input type="submit" class="btn btn-outline btn-primary" value="Thêm" /></p>
+        </form>
+        @*<p>
+                <input type="button" class="btn-outline btn-primary" value="Về Trang Tìm Kiếm" onclick="location.href='@Url.Action("QLDGia", "ThuThu")    '" />
+            </p>*@
+    </div>
+</div>

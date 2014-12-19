@@ -1,0 +1,21 @@
+﻿@model QuanLyThuVien_N8.Models.BarCode
+@{
+    ViewBag.Title = "CreateBarCodeView";
+}
+
+<h3>BarCode đã tạo ra: </h3>
+
+<br />
+<img src ="@String.Format("/BarCode/Created/{0}.jpg",@Model.Data)" />
+
+<button class="btn btn-outline btn-primary">In BarCode</button>
+<br />
+@*Read BarCode:@Model.ReadBarCode("D:\\123123.png");
+@if (@Model.ReadBarCode("D:\\123123.png") == "")
+{
+    <p> Wrong input</p>
+}
+@if (@Model.ReadBarCode("D:\\123123.png") != "")
+{
+     <p> Success</p>
+}*@

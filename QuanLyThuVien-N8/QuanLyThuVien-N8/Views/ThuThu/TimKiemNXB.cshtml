@@ -1,0 +1,37 @@
+﻿@{
+    ViewBag.Title = "QuanLyNXB";
+    Layout = "~/Views/Shared/_Layout_admin.cshtml";
+}
+
+<br />
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <center>TÌM KIẾM NHÀ XUẤT BẢN</center>
+        </div>
+    <br />
+@using (Ajax.BeginForm("KqTimKiemNXB", "ThuThu",
+                        new AjaxOptions {
+                        InsertionMode=InsertionMode.Replace,
+                        HttpMethod="GET",
+                        OnFailure="searchFailed",
+                        LoadingElementId="ajax-loader",
+                        UpdateTargetId="kqtimkiemnxb", 
+                        }))
+{
+    <p>
+        Từ khoá: <input type="text" name="TuKhoa" class="tukhoa"/>
+        (Tìm kiếm theo tên nhà xuất bản)
+    </p>
+    <p>
+        Giới hạn tìm kiếm:
+        <select name="GioiHan">
+            <option value="Chua">Có chứa từ khoá</option>
+            <option value="ChinhXac">Chính xác với từ khoá</option>
+        </select>
+    </p>
+    <p>
+        <input type="submit" value="Tìm kiếm" id="timkiem"/>
+    </p>
+}
+    <div id="kqtimkiemnxb"></div>
+</div>

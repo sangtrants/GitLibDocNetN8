@@ -1,0 +1,146 @@
+﻿@model QuanLyThuVien_N8.Models.NguoiDung
+
+@{
+    ViewBag.Title = "Cập Nhật Độc Giả";
+    Layout = "~/Views/Shared/_Layout_admin.cshtml";
+}
+
+<h3 class="page-header">QUẢN LÝ ĐỘC GIẢ</h3>
+
+@using (Html.BeginForm("suaDGIa", "ThuThu", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <center>CẬP NHẬT ĐỘC GIẢ</center>
+        </div>
+        <div class="table">
+            <table class="table table-striped table-bordered table-hover">
+                <tr>
+                    <th style="width:200px">
+
+                    </th>
+                    <th>
+                        Nội Dung
+                    </th>
+                </tr>
+
+                <tr>
+                    <th>
+                        Mã Người Dùng
+                    </th>
+                    <td>
+                        @Html.DisplayFor(model => model.MaNguoiDung)
+                        @Html.HiddenFor(model => model.MaNguoiDung)
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>
+                        Họ và Tên
+                    </th>
+                    <td>
+                        @Html.EditorFor(model => model.HoTen)
+                        @Html.ValidationMessageFor(model => model.HoTen)
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>
+                        CMND
+                    </th>
+                    <td>
+                        @Html.EditorFor(model => model.SoCMND)
+                        @Html.ValidationMessageFor(model => model.SoCMND)
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>
+                        Ngày Sinh
+                    </th>
+                    <td>
+                        @Html.EditorFor(model => model.NgaySinh)
+                        @Html.ValidationMessageFor(model => model.NgaySinh)
+                    </td>
+                </tr>
+
+                 <tr>
+                    <th>
+                        Email
+                    </th>
+                    <td>
+                        @Html.EditorFor(model => model.Email)
+                        @Html.ValidationMessageFor(model => model.Email)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        MSSV
+                    </th>
+                    <td>
+                        @Html.EditorFor(model => model.MSSV)
+                        @Html.ValidationMessageFor(model => model.MSSV)
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>
+                        Ngày Hết Hạn
+                    </th>
+                    <td>
+                        @Html.EditorFor(model => model.NgayHetHan)
+                        @Html.ValidationMessageFor(model => model.NgayHetHan)
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>
+                        Loại Người Dùng
+                    </th>
+                    <td>
+                        @Html.DropDownListFor(model => model.LoaiND, new SelectList(
+                           new List<Object> {
+                               new{value="Sinh Viên Trường", text="Sinh Viên Trường"},
+                               new{value="Cán Bộ Trường", text="Cán Bộ Trường"},
+                               new{value="Sinh Viên Trường Khác", text="Sinh Viên Trường Khác"},
+                               new{value="Cán Bộ Trường Khác", text="Cán Bộ Trường Khác"}
+                           },
+                           "value",
+                           "text", Model.LoaiND)
+                           )
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>
+                        Tên Đăng Nhập
+                    </th>
+                    <td>
+                        @Html.EditorFor(model => model.TenDangNhap)
+                        @Html.ValidationMessageFor(model => model.TenDangNhap)
+                    </td>
+                </tr>
+
+              
+
+                <tr>
+                    <th>
+                        Ảnh Đại Diện
+                    </th>
+                    <td>
+                        <img style="width:118px; height:118px" src="@Model.AnhDaiDien" />
+                        <br />
+                        @Html.ActionLink("Cập nhật hình ảnh", "capnhatAnh", new { id = @Model.TenDangNhap }, new { @class = "btn-outline btn-primary", target = "_blank" })
+                    </td>
+                </tr>
+
+            </table>
+            <input style="margin-left:300px" type="submit" class="btn btn-outline btn-primary" value="Lưu" />
+            <br />
+            <br />
+        </div>
+    </div>
+}

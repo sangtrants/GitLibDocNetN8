@@ -1,0 +1,58 @@
+﻿@model IEnumerable<QuanLyThuVien_N8.Models.Sach>
+  <div id="sachmuon2">
+@if (ViewBag.SoSach <= 0)
+{
+    <h3>Đọc giả <strong>@ViewBag.MaDocGia</strong> hiện không thể mượn thêm sách</h3>
+}
+else
+{
+    <h3>Đọc giả <strong>@ViewBag.MaDocGia</strong> hiện có thể mượn thêm <strong>@ViewBag.SoSach</strong> quyển sách</h3>
+    using (Ajax.BeginForm("ThemSachMuon2", "ThuThu",
+                            new AjaxOptions
+                            {
+                                InsertionMode = InsertionMode.Replace,
+                                HttpMethod = "GET",
+                                OnFailure = "searchFailed",
+                                LoadingElementId = "ajax-loader",
+                                UpdateTargetId = "sachmuon2",
+                            }))
+    {
+        <input type="hidden" name="ListMaSach" value="@ViewBag.ListMaSach"/>
+        <input type="hidden" name="MaDocGia" value="@ViewBag.MaDocGia"/>
+        <input type="hidden" name="SoSach" value="@ViewBag.SoSach"/>
+        <p>
+            <strong>Mã sách mượn:</strong> <input type="text" name="MaSach" class="tukhoa"/>
+            <input type="submit" class="btn btn-outline btn-primary" value="Thêm sách" id="timkiem"/>
+        </p>
+        <i>(Nhập mã đọc sách muốn mượn)</i><br />
+    }
+}
+
+@if (ViewBag.flag == 0)
+{
+    <h3><i>Mã sách hiện không tồn tại</i></h3><br />
+}
+else if (ViewBag.flag == 1)
+{
+    <h3><i>Sách hiện đã có người mượn</i></h3><br />
+}
+@if (Model != null)
+{
+    <table border="1">
+        <tr>
+            <td><strong>Mã sách</strong></td>
+            <td><strong>Tên sách</strong></td>
+        </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.MaSach</td>
+            <td>@item.TenSach</td>
+        </tr> 
+    }
+    </table><br />
+    <input type="button" class="btn btn-outline btn-primary" value="Mượn sách" onclick= "location.href='@Url.Action("ChoMuonSach", "ThuThu", new { ListMaSach = @ViewBag.ListMaSach, MaDocGia = @ViewBag.MaDocGia })'" />
+    <input type="button" class="btn btn-outline btn-primary" value="Quay lại" onclick= "location.href='@Url.Action("QLMuonSach", "ThuThu")'" />
+    <br /><br />
+}
+</div>

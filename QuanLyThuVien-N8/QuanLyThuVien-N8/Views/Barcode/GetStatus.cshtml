@@ -1,0 +1,29 @@
+﻿<div class="alert alert-success">
+    <h3>Nhập BarCode cần tạo</h3>
+
+    @using (Ajax.BeginForm("CreateBarCodeView", new AjaxOptions() { UpdateTargetId = "createBarcode" }))
+    {
+
+        <form role="form" id ="BarCode" name ="BarCode">
+            <div class="form-group">
+                <input name="txtBarcode" id ="txtBarcode" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-outline btn-primary" onclick ="return check();">Create</button>
+        </form>
+        <span id="createBarcode"></span>
+
+}
+</div>
+<script src="~/Scripts/jquery-1.7.1.min.js"></script>
+<script >
+    function check()
+    {
+        var code = document.getElementById('txtBarcode');
+        if (code.value == "") {
+            alert("Vui lòng nhập dãy số cần tạo barcode!");
+            return false;
+        }
+        else
+            return true;
+    }
+</script>

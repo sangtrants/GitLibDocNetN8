@@ -1,0 +1,39 @@
+﻿@model IEnumerable<QuanLyThuVien_N8.Models.ChiTietPhieuMuon>
+@{
+    ViewBag.Title = "NhanTraSach";
+    Layout = "~/Views/Shared/_Layout_admin.cshtml";
+}
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <center>THÔNG TIN SÁCH TRẢ</center>
+    </div>
+<br />
+
+    <div align="center">
+        <p><strong>Mã đọc giả:</strong> @ViewBag.MaDocGia</p>
+        <p><strong>Số lượng sách trả:</strong> @ViewBag.SoLuongSachTra</p>
+        <p><strong>Ngày trả:</strong> @ViewBag.NgayTra</p>
+        <p align="center"><strong>Danh sách sách mượn</strong></p>
+        <table border="1">
+            <tr>
+                <td>Mã phiếu mượn</td>
+                <td>Mã chi tiết phiếu mượn</td>
+                <td>Tên sách</td>
+                <td>Số ngày mượn quá hạn</td>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.MaPhieuMuon</td>
+                    <td>@item.MaChiTietPhieuMuon</td>
+                    <td>@item.NgayMuon</td>
+                    <td>@item.SoNgayQuaHan</td>
+                </tr>
+            }
+        </table>
+        <br />
+        <input type="button" class="btn btn-outline btn-primary" value="Quay về trang chủ" onclick= "location.href='@Url.Action("Index", "ThuThu")'" />
+        <br />
+    </div>
+</div>

@@ -1,0 +1,48 @@
+﻿@model IEnumerable<QuanLyThuVien_N8.Models.ChiTietPhieuMuon>
+
+<h2>Mã đọc giả: @ViewBag.MaDocGia</h2>
+@if (ViewBag.flag == 0)
+{
+    <h3><i>Mã độc giả không tồn tại</i></h3>
+}
+else if (ViewBag.flag == 1)
+{
+    <h3><i>Đọc giả hiện không có mượn sách</i></h3>
+}
+else
+{
+    using (Html.BeginForm("NhanTraSach", "ThuThu", FormMethod.Post))
+    {
+        <table border="1" class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Trả</th>
+                    <th>Mã sách</th>
+                    <th>Tên sách</th>
+                    <th>Ngày mượn</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>
+                        <input type="checkbox" name="DSMaCT" id="DSMaCT" value="@item.MaChiTietPhieuMuon" />
+                    </td>
+                    <td>
+                        @item.MaSach
+                    </td>
+                    <td>
+                        @item.Sach.TenSach
+                    </td>
+                    <td>
+                        @item.NgayMuon
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table><br />
+        <input type="hidden" value="@ViewBag.MaDocGia" name="MaDocGia" />
+        <input type="submit" value="Trả sách" class="btn btn-outline btn-primary" /><br />
+    }
+}

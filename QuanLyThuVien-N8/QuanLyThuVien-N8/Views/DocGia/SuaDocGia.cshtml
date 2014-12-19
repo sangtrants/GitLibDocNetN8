@@ -1,0 +1,82 @@
+﻿@{
+    ViewBag.Title = "SuaDocGia";
+    Layout = "~/Views/Shared/_Layout_home.cshtml";
+}
+
+<h2>Thông tin đọc giả</h2>
+@model QuanLyThuVien_N8.Models.NguoiDung
+@using (Html.BeginForm("SuaDocGia","Home",FormMethod.Post)) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <div class="panel-body">
+    <fieldset>
+        <legend>Chỉnh sửa thông tin</legend>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.MaNguoiDung, new { @type = "hidden"})
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.HoTen)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.HoTen)
+            @Html.ValidationMessageFor(model => model.HoTen)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SoCMND)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.SoCMND)
+            @Html.ValidationMessageFor(model => model.SoCMND)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.NgaySinh)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.NgaySinh, new { @type = "datetime"})
+            @Html.ValidationMessageFor(model => model.NgaySinh)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MSSV)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.MSSV, new { @disabled = "disabled"})
+            @Html.ValidationMessageFor(model => model.MSSV)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TenDangNhap)
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.TenDangNhap)
+            @Html.TextBoxFor(model => model.TenDangNhap, new {@type="hidden"})
+            @Html.ValidationMessageFor(model => model.TenDangNhap)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MatKhau)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.MatKhau)
+            @Html.ValidationMessageFor(model => model.MatKhau)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AnhDaiDien)
+        </div>
+        <div class="editor-field">
+            <img style="width:118px; height:118px" src="@Url.Content(@Model.AnhDaiDien)" />
+            
+        </div>
+
+        <div>@Html.ActionLink("Cập nhật hình ảnh", "capnhatAnh", "Home", new { username = @Model.TenDangNhap },null)</div>
+
+        <p>
+            <input type="submit" class="btn btn-lg btn-success btn-block" value="Lưu" onclick ="return confirm('Do you really want to change?');"/>
+        </p>
+    </fieldset>
+    </div>
+}

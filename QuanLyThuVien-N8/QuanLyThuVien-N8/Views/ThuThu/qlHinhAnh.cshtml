@@ -1,0 +1,66 @@
+﻿@model PagedList.IPagedList<QuanLyThuVien_N8.Models.NguoiDung>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Quản Lý Hình Ảnh";
+    Layout = "~/Views/Shared/_Layout_admin.cshtml";
+}
+
+<h2>Quản Lý Hình Ảnh</h2>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <center>QUẢN LÝ ẢNH ĐẠI DIỆN</center>
+    </div>
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            Họ Tên
+                        </th>
+                        <th>
+                            Tài Khoản
+                        </th>
+                        <th>
+                            Ảnh Đại Diện
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @item.HoTen
+                            </td>
+                            <td>
+                                @item.TenDangNhap
+                            </td>
+                            <td>
+                                <img style="width:118px; height:118px" src="@item.AnhDaiDien" />
+                            </td>
+                            <td>
+                                @Html.ActionLink("Cập nhật hình ảnh", "capnhatAnh", new { id = item.TenDangNhap }, new { @class = "btn btn-outline btn-primary", target = "_blank" })
+                                @Html.ActionLink("Chi Tiết", "chitietDGia", new { id = item.MaNguoiDung }, new { @class = "btn btn-outline btn-primary", target = "_blank" })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div> @*table-responsive*@
+    </div> @*panel-body*@
+    <div class="Paging">
+        Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+        @Html.PagedListPager(Model, page => Url.Action("qlHinhAnh", new { page }))
+    </div>
+</div> @*panel-default*@
+
+@*<span>
+    &nbsp&nbsp<input type="button" class="btn-outline btn-primary" value="Về Trang Tìm Kiếm" onclick="location.href='@Url.Action("QLDGia", "ThuThu")    '" />
+</span>*@
+

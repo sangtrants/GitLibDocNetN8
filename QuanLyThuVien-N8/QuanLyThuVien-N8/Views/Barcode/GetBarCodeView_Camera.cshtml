@@ -1,0 +1,85 @@
+﻿
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>GetBarCodeView</title>
+    <script src="~/Scripts/jquery-1.7.1.js"></script>
+    <script src="~/Content/jquery.webcam.min.js"></script>
+    <script type="text/javascript">
+        var pos = 0;
+        var ctx = null;
+        var cam = null;
+        var image = null;
+
+        var filter_on = false;
+        var filter_id = 0;
+
+        function changeFilter() {
+            if (filter_on) {
+                filter_id = (filter_id + 1) & 7
+            }
+        }
+        $(function () {
+            $("#camera").webcam({
+                width: 480,
+                height: 320,
+                mode: "save",
+                swffile: "/Content/jscam.swf",
+                onTick: function (remain) {
+                    if (0 == remain) {
+                        $("#getPic").html("<h3>Quét xong </h3> ");;
+                    }
+                    else {
+                        $("#getPic").html("<h3>" + "Quét ảnh sau " + remain + " giây</h3>");
+                    }
+                },
+                onSave: function () {
+                    var col = data.split(";");
+                    var img = image;
+
+                    for (var i = 0; i < 480; i++) {
+                        var tmp = parseInt(col[i]);
+                        img.data[pos + 0] = (tmp >> 16) & 0xff;
+                        img.data[pos + 1] = (tmp >> 8) & 0xff;
+                        img.data[pos + 2] = tmp & 0xff;
+                        img.data[pos + 3] = 0xff;
+                        pos += 4;
+                    }
+
+                    if (pos >= 4 * 480 * 320) {
+                        ctx.putImageData(img, 0, 0);
+                        pos = 0;
+                    }
+                },
+                onCapture: function () {
+                    jQuery("#flash").css("display", "block");
+                    jQuery("#flash").fadeOut("fast", function () {
+                        jQuery("#flash").css("opacity", 1);
+                    });
+
+                    webcam.save('/Barcode/SaveImage');
+                },
+                debug: function () { },
+                onLoad: function () {
+                    var cams = webcam.getCameraList();
+                    for (var i in cams) {
+                        jQuery("#camera").append("<li>" + cams[i] + "</li>");
+                    }
+                    webcam.capture(5);
+                }
+            });
+        });
+</script>
+</head>
+<body>
+    <div class="alert alert-success">
+     <span id="getPic"></span>
+    <div id="camera">
+    </div>
+    <input type="button" class="btn btn-outline btn-primary" value="Quét lại" onclick= "location.href = 'javascript:webcam.capture(3);changeFilter();void(0);'" />
+</div>
+</body>
+</html>

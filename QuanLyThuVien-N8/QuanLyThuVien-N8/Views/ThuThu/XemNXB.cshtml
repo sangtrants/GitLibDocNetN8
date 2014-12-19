@@ -1,0 +1,33 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<QuanLyThuVien_N8.Models.NhaXuatBan>
+
+<h2>Kết quả tìm kiếm</h2>
+
+<div id="quanlysach">
+    <div class="panel-body">
+    @foreach (var item in Model)
+        {
+        <div class="feat_prod_box">
+                <div class="prod_det_box">
+                	<div class="box_top"></div>
+                    <div class="box_center">
+                    <div class="prod_title">@item.TenNhaXuatBan</div>
+                    <p class="details"><strong>Địa chỉ</strong>: @Html.DisplayFor(modelItem => item.DiaChi)</p>
+                    <p class="details"><strong>Số tài khoản</strong>: @Html.DisplayFor(modelItem => item.SoTaiKhoan)</p>
+                    <p class="details"><strong>Số điện thoại</strong>: @Html.DisplayFor(modelItem => item.SoDienThoai)</p>
+                    <p class="details"><strong>Website</strong>: @Html.DisplayFor(modelItem => item.Website)</p>
+                    <input type="button" class="btn btn-outline btn-primary" value="Cập Nhật" onclick= "location.href='@Url.Action("CapNhatNXB", "ThuThu", new { id = item.MaNhaXuatBan})    '" />
+                    <input type="button" class="btn btn-outline btn-primary" value="Xoá" id="Xoa" onclick= "location.href='@Url.Action("XoaNXB", "ThuThu", new { id = item.MaNhaXuatBan })    '" />
+                    <div class="clear"></div>
+                    </div>
+                    <div class="box_bottom"></div>
+                </div>    
+            <div class="clear"></div>
+            </div>
+    }
+    <div class ="Paging">
+        @Html.PagedListPager(Model, page => Url.Action("KqTimKiemNXB", new { page, TuKhoa = ViewBag.TuKhoa, GioiHan = ViewBag.GioiHan}), 
+                     PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing( new AjaxOptions(){  HttpMethod = "GET", UpdateTargetId="kqtimkiemnxb"}))
+    </div>
+</div>

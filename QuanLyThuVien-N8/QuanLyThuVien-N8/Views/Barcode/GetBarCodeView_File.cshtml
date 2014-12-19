@@ -1,0 +1,24 @@
+﻿<script src="~/Scripts/jquery-1.7.1.min.js"></script>
+<script>
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#barCodeImg')
+                  .attr('src', e.target.result)
+                  .width(320)
+                  .height(240);
+                $('#location').attr('value', e.target.result);
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
+<div class="form-group">
+    <label>File input</label>
+    <input type="file" onchange="readURL(this);">
+    <img id ="barCodeImg" name ="barCodeImg"  />
+    <br />
+    <input type="text" id="location" />
+
+</div>

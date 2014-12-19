@@ -1,0 +1,60 @@
+﻿@{
+    ViewBag.Title = "GopY";
+    Layout = "~/Views/Shared/_Layout_home.cshtml";
+}
+
+<h3 class="page-header">GÓP Ý - HỖ TRỢ</h3>
+@if (ViewBag.Result == "OK")
+{
+    <h4><b>Cảm ơn bạn đã liên hệ với chúng tôi</b></h4>
+}
+
+<form id="form" action="/Home/GopY" method="post">
+    <table class="table table-striped table-bordered table-hover">
+        <tr>
+            <td>Tên của bạn: </td>
+            <td>
+                <input type="text" id="tenDocGia" name="tenDocGia" />
+            </td>
+        </tr>
+        <tr>
+            <td>Email của bạn: </td>
+            <td>
+                <input type="text" id="emailDocGia" name="emailDocGia" />
+            </td>
+        </tr>
+        <tr>
+            <td>Tiêu đề :</td>
+            <td>
+                <input type="text" name="tieude" id="tieude" />
+            </td>
+        </tr>
+        <tr>
+
+
+            <td>Nội dung:</td>
+            <td>
+                <textarea name="noidung" cols="100" rows="4" id="noidung"></textarea>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input class="btn btn-outline btn-primary" type="submit" value="Gửi" />
+            </td>
+        </tr>
+    </table>
+</form>
+<script>
+    $('form').submit(function () {
+
+        var name = $.trim($('#tenDocGia').val());
+        var email = $.trim($('#emailDocGia').val());
+        var subject = $.trim($('#tieude').val());
+        var body = $.trim($('#noidung').val());
+        // Check if empty of not
+        if (name === "" || email ===""|| subject === "" || body === "") {
+            alert('Vui lòng điền đầy đủ thông tin.');
+            return false;
+        }
+    });
+</script>

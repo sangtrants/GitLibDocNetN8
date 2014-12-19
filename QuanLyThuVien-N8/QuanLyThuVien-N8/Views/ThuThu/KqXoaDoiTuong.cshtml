@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "KqXoaDoiTuong";
+    Layout = "~/Views/Shared/_Layout_admin.cshtml";
+}
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <center>XEM TOÀN BỘ TÁC GIẢ</center>
+    </div>
+<br />
+    <div align="center">
+        <h2>@ViewBag.Message</h2>
+        <input type="button" class="btn btn-outline btn-primary" value="Quay trở về" onclick= "location.href='@Url.Action("Index", "ThuThu")    '" />
+        <br /><br />
+    </div>
+</div>
